@@ -1,0 +1,26 @@
+GUIA DAS BIBLIOTECAS:
+
+TKINTER:
+Grid System:
+    Grid - divide em grids
+    Pack - centraliza 
+    Place - posiciona por pixels
+        relx/rely - porcentagem da tela
+
+Botoes - Button
+
+Texto - Label
+
+Inputs - Entry
+
+Lista flutuante - Combobox
+
+Caixas de seleçao - Checkbox
+
+Opcões - Radiobutton
+
+Caixa com lista - Listbox
+
+Quadrado na tela - Frame
+
+Planilha - Treeview
