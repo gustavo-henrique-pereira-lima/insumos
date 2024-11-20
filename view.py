@@ -2,13 +2,14 @@ from tkinter import *
 import tkinter as tk
 from ttkbootstrap import Style, ttk
 from PIL import Image, ImageTk
+from model import ProdutoModel
 
 class ProdutoView:
 
     def setup(self, root): 
         self.root = root
         self.root.title("Sistema de Estoque Odontologia")
-        self.root.geometry("900x700")
+        self.root.geometry("1000x700")
 
         #cabecalho
         cabecalho = ttk.Frame(self.root, height=100, bootstyle='secondary')
@@ -16,6 +17,8 @@ class ProdutoView:
 
         # Chama a função para criar a barra de navegação
         self.barra_de_navegacao()
+        self.criar_tabela()
+        self.listar_produtos()
 
     def barra_de_navegacao(self):
         # Criar a barra de navegação
@@ -69,24 +72,28 @@ class ProdutoView:
         # Configura a coluna central para expandir conforme o redimensionamento da janela
         navegacao.grid_columnconfigure(4, weight=2)  # Campo de busca terá mais espaço
 
-        # Criar a tabela
+    def criar_tabela(self):
+        # Cria a tabela para listar os produtos
         tela_interna = ttk.Frame(self.root, bootstyle='light')
         tela_interna.pack(pady=20, padx=20, fill='both', expand=True)
 
+        # Criação do Treeview para a tabela
         self.tabela = ttk.Treeview(tela_interna, columns=("ID", "Material", "Quantidade", "Data de Vencimento", "Tipo de Material", "Criticidade"), show='headings')
 
+        # Definindo os cabeçalhos das colunas
         for col in self.tabela["columns"]:
             self.tabela.heading(col, text=col)
             self.tabela.column(col, width=150, anchor="center")
 
+        # Exibe a tabela na tela
         self.tabela.pack(expand=True, fill='both')
 
-        # Criar botão de listar produtos
-        self.botao_listar = ttk.Button(self.root, text="Listar Produtos", command=self.listar_produtos, bootstyle='primary')
-        self.botao_listar.pack(pady=10)
-
     def listar_produtos(self):
-        pass  # Método vazio, será implementado pelo Controller
+        # Buscar os produtos no Model
+        produtos = self.model.listar_produtos()
+
+        # Exibir os dados na tabela
+        self.display_produtos(produtos)
 
     def display_produtos(self, produtos):
         # Limpar dados anteriores
