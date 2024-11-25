@@ -10,6 +10,7 @@ class ProdutoView:
         self.root = root
         self.root.title("Sistema de Estoque Odontologia")
         self.root.geometry("1000x700")
+        self.root.minsize(width=900, height=700)
 
         #cabecalho
         cabecalho = ttk.Frame(self.root, height=100, bootstyle='secondary')
@@ -32,7 +33,7 @@ class ProdutoView:
         # Carregar os ícones usando o Pillow
         img_menu = Image.open("imagens/botao-de-menu.png")
         icone_menu = ImageTk.PhotoImage(img_menu)
-        botao_menu = ttk.Button(navegacao, text='Menu', image=icone_menu, bootstyle='light', compound=tk.TOP)
+        botao_menu = ttk.Button(navegacao, text='Configurações', image=icone_menu, bootstyle='light', compound=tk.TOP)
         botao_menu.grid(column=0, row=0, padx=5, sticky="ew")
 
         img_relatorio = Image.open("imagens/botao_relatorio.png")
